@@ -42,15 +42,15 @@ BR31_start <- function() {
   }
   
   if (winner == "player_win") {
-    first_turn <- "player"
+    whose_turn <- "player"
   } else {
-    first_turn <- "computer"
+    whose_turn <- "computer"
   }
   
   current_number <- 0
   first_turn_completed <- FALSE
   while (current_number < 31) {
-    if (first_turn == "computer") {
+    if (whose_turn == "computer") {
       # 컴퓨터의 차례
       remaining_numbers <- 31 - current_number
       num_to_call <- sample(1:min(3, remaining_numbers), 1)
@@ -62,7 +62,7 @@ BR31_start <- function() {
         cat("제가 부르겠습니다. ", computer_numbers, "\n")
       }
       current_number <- max(computer_numbers)
-      first_turn <- "player"
+      whose_turn <- "player"
     } else {
       # 사용자의 차례
       if (!first_turn_completed) {
@@ -88,12 +88,10 @@ BR31_start <- function() {
         }
       }
       current_number <- max(user_numbers)
-      first_turn <- "computer"
+      whose_turn <- "computer"
     }
   }
   
-  if (first_turn == "player") cat("당신이 이겼습니다. 게임 종료!\n")
+  if (whose_turn == "player") cat("당신이 이겼습니다. 게임 종료!\n")
   else cat("제가 이겼습니다. 게임 종료\n")
 }
-
-BR31_start()
